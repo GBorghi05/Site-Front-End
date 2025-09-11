@@ -15,14 +15,14 @@ body {
   min-height: 100vh;
 }
 
-/* Container central */
+/* Centralizador */
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1rem;
 }
 
-/* Navbar */
+/* Header fixo */
 header {
   background-color: var(--gray-darker);
   box-shadow: 0 2px 8px rgba(212, 175, 55, 0.5);
@@ -31,11 +31,9 @@ header {
   top: 0;
   width: 100%;
   z-index: 50;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 }
 
+/* Título */
 header h1 {
   font-weight: 900;
   font-size: 1.75rem;
@@ -44,7 +42,15 @@ header h1 {
   user-select: none;
 }
 
+/* Navegação */
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
 nav a {
+  display: inline-block;
   color: var(--gold);
   text-decoration: none;
   font-weight: 600;
@@ -72,30 +78,6 @@ nav a::after {
 nav a:hover::after,
 nav a:focus::after {
   width: 100%;
-}
-
-input[type="text"] {
-  border: none;
-  border-radius: 6px;
-  padding: 0.4rem 0.8rem;
-  font-size: 1rem;
-  outline: none;
-  transition: box-shadow 0.3s ease;
-  width: 150px;
-}
-
-input[type="text"]:focus {
-  box-shadow: 0 0 8px var(--gold);
-}
-
-header > div:last-child {
-  font-weight: 700;
-  font-size: 1rem;
-  cursor: default;
-  user-select: none;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
 }
 
 /* Grid de produtos */
@@ -151,17 +133,18 @@ header > div:last-child {
   font-size: 1.1rem;
 }
 
-/* Botão adicionar */
+/* Botão adicionar ao carrinho */
 button {
   background: linear-gradient(90deg, var(--gold) 0%, var(--yellow) 100%);
   border: none;
   border-radius: 9999px;
-  padding: 0.6rem 1
+  padding: 0.6rem 1rem;
+  margin: 0 1rem 1rem 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
 }
 
-  /* Centralizador reutilizável */
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
+button:hover {
+  filter: brightness(1.1);
 }
