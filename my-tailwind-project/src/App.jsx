@@ -7,49 +7,18 @@ import camisetaBranca from "./assets/camiseta-branca.jpg";
 import jaqueta from "./assets/jaqueta.jpg";
 import agasalho from "./assets/agasalho.jpg";
 
-
 const products = [
-  {
-    id: 1,
-    name: "Camiseta Preta Masculina",
-    price: 116.99,
-    img: camisetaPreta
-  },
-  {
-    id: 2,
-    name: "Camiseta Polo Masculina",
-    price: 99.99,
-    img: camisetaPolo
-  },
-  {
-    id: 3,
-    name: "Camiseta Estampada Masculina",
-    price: 116.99,
-    img: camisetaCrest
-  },
-  {
-    id: 4,
-    name: "Camiseta Branca Masculina",
-    price: 99.99,
-    img: camisetaBranca
-  },
-  {
-    id: 5,
-    name: "Jaqueta Masculina",
-    price: 249.99,
-    img: jaqueta
-  },
-  {
-    id: 6,
-    name: "Agasalho Masculino",
-    price: 299.99,
-    img: agasalho
-  }
+  { id: 1, name: "Camiseta Preta Masculina", price: 116.99, img: camisetaPreta },
+  { id: 2, name: "Camiseta Polo Masculina", price: 99.99, img: camisetaPolo },
+  { id: 3, name: "Camiseta Estampada Masculina", price: 116.99, img: camisetaCrest },
+  { id: 4, name: "Camiseta Branca Masculina", price: 99.99, img: camisetaBranca },
+  { id: 5, name: "Jaqueta Masculina", price: 249.99, img: jaqueta },
+  { id: 6, name: "Agasalho Masculino", price: 299.99, img: agasalho }
 ];
-
 
 export default function App() {
   const [cart, setCart] = useState([]);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   function addToCart(product) {
     setCart((prevCart) => {
@@ -68,9 +37,22 @@ export default function App() {
     <div className="app">
       {/* Header */}
       <header>
-        <div className="container" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap" }}>
+        <div className="container header-container">
           <h1>LuxWear</h1>
-          <nav>
+
+          {/* Botão hambúrguer */}
+          <button
+            className="hamburger"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Abrir menu"
+          >
+            <span className="bar"></span>
+            <span className="bar"></span>
+            <span className="bar"></span>
+          </button>
+
+          {/* Navegação */}
+          <nav className={menuOpen ? "nav open" : "nav"}>
             <a href="#">Ofertas</a>
             <a href="#">Lançamentos</a>
             <a href="#">Masculino</a>
@@ -97,6 +79,22 @@ export default function App() {
               </button>
             </div>
           ))}
+        </div>
+
+        {/* Carrinho simples */}
+        <div className="cart">
+          <h2>Carrinho</h2>
+          {cart.length === 0 ? (
+            <p>O carrinho está vazio.</p>
+          ) : (
+            <ul>
+              {cart.map((item) => (
+                <li key={item.id}>
+                  {item.name} - Quantidade: {item.quantity} - Preço: R$ {(item.price * item.quantity).toFixed(2)}
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       </main>
     </div>
